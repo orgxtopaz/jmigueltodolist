@@ -1,5 +1,12 @@
 <?php
 session_start();
+$name='';
+$location ='';
+$id=0;
+
+#DEFAULT VALUE OF UPDATE BUTTON WHEN EDIT WASNT CLICKED!
+$update=false;
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -28,7 +35,7 @@ if(isset($_POST['save'])){
 
                      
     $_SESSION['message'] ="Record has been saved!";
-    $_SESSION['msg_type'] ="success";
+    $_SESSION['msg_type'] ="success"; // SUCH A BACKROUND OF "$_SESSION['message']"
 
     header("location:home.php");
 }
@@ -43,11 +50,43 @@ if(isset($_GET['delete'])){
     $conn ->query("DELETE FROM data WHERE id=$id") or die ($conn->error);
 
     $_SESSION['message'] ="Record has been Deleted!";
-    $_SESSION['msg_type'] ="danger";
+    $_SESSION['msg_type'] ="danger"; // SUCH A BACKROUND OF "$_SESSION['message']"
                  
     header("location:home.php");
 }
 
+#EDIT BUTTON AND UPDATE
+
+if(isset($_GET['edit'])){
+    $id=$_GET['edit'];
+    #WHEN EDIT BUTTON IS CLICKED! UPDATE BUTTON NEW WILL BE EXECUTED!
+
+    $update =true;
+
+    $result=$conn->query("SELECT * FROM data WHERE id=$id")or die ($conn->error);
+
+    if(count($result)==1){
+        $row = $result->fetch_array();
+        $name =$row['name'];
+        $location =$row['location'];
+
+    }
+}
+
+
+#IF UPDATE BUTTON IS CLICKED!
+if(isset($_POST['update'])){
+    $id=$_POST['id'];
+    $name= $_POST['name'];
+    $location = $_POST['location'];
+
+    $conn->query("UPDATE data SET name ='$name',location='$location' WHERE id=$id")or die ($conn->error);
+
+    $_SESSION['message'] = "Record has been updated!";
+    $_SESSION['msg_type']="Warning"; // SUCH A BACKROUND OF "$_SESSION['message']"
+
+    header('location:home.php');
+}
 
 ?>
 

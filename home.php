@@ -146,24 +146,31 @@ $result = mysqli_fetch_assoc($data);
 
 
   <form class="row g-3" action="connection.php" method ="POST">
+     <input type ="hidden" name ="id" value="<?php echo $id;?>">
    
     <div class="col-auto" class="form-group">
 
       <label for="Name" class="visually-hidden">Name</label>
-      <input type="text" class="form-control"  placeholder="Name" name="name">
+      <input type="text" class="form-control"  placeholder="Name" name="name" value="<?php echo $name; ?>">
 
     </div>
 
     <div class="col-auto" class="form-group">
 
      <label for="Location" class="visually-hidden">Location</label>
-     <input type="text" class="form-control"  placeholder="location" name="location">
+     <input type="text" class="form-control"  placeholder="location" name="location" value="<?php echo $location; ?>">
 
     </div>
     <div class="col-auto" class="form-group">
+    <?php
 
+    if($update==true):
+    ?>
+         <button type="submit" class="btn btn-primary mb-3" name="update">UPDATE</button>
+
+    <?php else: ?>
      <button type="submit" class="btn btn-primary mb-3" name="save">INSERT</button>
-
+    <?php endif; ?>
      </div>
   </form>
   </div>
