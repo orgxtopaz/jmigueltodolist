@@ -30,7 +30,7 @@ $result = mysqli_fetch_assoc($data);
 ?>
 
 <!DOCTYPE html>
-<link rel="stylesheet" href="homestyle.css">
+
 
 <script src="jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
@@ -82,13 +82,15 @@ $result = mysqli_fetch_assoc($data);
 ?>
 
         <div class ="row justify-content-center">
-              <table class="table">
+              <table class="fl-table">
                       <thead>
+                        <div class='table-wrapper'>
                             <tr>
                              <th>Name</th>
                              <th>Location</th>
                              <th colspan="2">Action</th>
                             </tr>
+                        </div>
                       </thead>
 
               <?php
@@ -148,14 +150,14 @@ $result = mysqli_fetch_assoc($data);
     --bs-gutter-x: -46rem;
 }
 </style>
-
+<link rel="stylesheet" href="homestyle.css">
 
   <form class="row g-3" action="connection.php" method ="POST">
      <input type ="hidden" name ="id" value="<?php echo $id;?>">
    
     <div class="col-auto" class="form-group">
 
-      <label for="Name" class="visually-hidden">Name</label>
+      <label for="Name" class="visually-hidden" id="name">Name</label>
       <input type="text" class="form-control"  placeholder="Name" name="name" value="<?php echo $name; ?>">
 
     </div>
@@ -174,7 +176,9 @@ $result = mysqli_fetch_assoc($data);
          <button type="submit" class="btn btn-primary mb-3" name="update">UPDATE</button>
 
     <?php else: ?>
-     <button type="submit" class="btn btn-primary mb-3" name="save">INSERT</button>
+      <br>
+      <br>
+     <button type="submit" class="btn btn-primary mb-3"  name="save">INSERT</button>
     <?php endif; ?>
      </div>
   </form>
