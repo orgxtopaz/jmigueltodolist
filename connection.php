@@ -34,12 +34,14 @@ if(isset($_POST['save'])){
                     die ($conn->error);
 
                      
-    $_SESSION['message'] ="Record has been saved!";
+    $_SESSION['message'] ="Record has been saved! <input type='button' value='Refresh Page' onClick='refresh()'>"; #SUCCESS ALERT MESSAGE WITH RELOAD HREF
+   
+
     $_SESSION['msg_type'] ="success"; // SUCH A BACKROUND OF "$_SESSION['message']"
-
     header("location:home.php");
-}
 
+
+}
 
 #DELETING THE DATA BY ITS ID
 
@@ -49,7 +51,7 @@ if(isset($_GET['delete'])){
 
     $conn ->query("DELETE FROM data WHERE id=$id") or die ($conn->error);
 
-    $_SESSION['message'] ="Record has been Deleted!";
+    $_SESSION['message'] ="Record has been Deleted! <input type='button' value='Refresh Page' onClick='refresh()'>";
     $_SESSION['msg_type'] ="danger"; // SUCH A BACKROUND OF "$_SESSION['message']"
                  
     header("location:home.php");
@@ -82,7 +84,7 @@ if(isset($_POST['update'])){
 
     $conn->query("UPDATE data SET name ='$name',location='$location' WHERE id=$id")or die ($conn->error);
 
-    $_SESSION['message'] = "Record has been updated!";
+    $_SESSION['message'] = "Record has been updated! <input type='button' value='Refresh Page' onClick='refresh()'>";
     $_SESSION['msg_type']="Warning"; // SUCH A BACKROUND OF "$_SESSION['message']"
 
     header('location:home.php');
@@ -90,6 +92,11 @@ if(isset($_POST['update'])){
 
 ?>
 
+<!-- MESSAGE ALERT WITH FUNCTION ALERT -->
 
+<script type="text/javascript">
+function refresh(){ window.location.reload();}
+
+ </script>
 
 

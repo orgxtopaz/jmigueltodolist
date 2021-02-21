@@ -4,7 +4,8 @@ error_reporting(0);
 include("connection.php");
 
 // DISPLAYING THE EMAIL OF USER INSIDE DASHBOARD.
-echo "Welcome ".$_SESSION['email'];
+echo "<p class='useremaildisplay''> Welcome ".$_SESSION['email'] . "</p>";
+
 
 
 // CONDITIONING IF THE EMAIL INPUT IS EQUAL TO THE EMAIL IN THE DATABASE.
@@ -64,7 +65,10 @@ $result = mysqli_fetch_assoc($data);
 
            echo $_SESSION['message'];
            unset ($_SESSION['message']);
-      
+          
+
+
+  
       ?>
 </div>
 <?php  endif ?>
@@ -154,7 +158,7 @@ $result = mysqli_fetch_assoc($data);
 
   <form class="row g-3" action="connection.php" method ="POST">
      <input type ="hidden" name ="id" value="<?php echo $id;?>">
-   
+    
     <div class="col-auto" class="form-group">
 
       <label for="Name" class="visually-hidden" id="name">Name</label>
@@ -167,25 +171,41 @@ $result = mysqli_fetch_assoc($data);
      <label for="Location" class="visually-hidden">Location</label>
      <input type="text" class="form-control"  placeholder="location" name="location" value="<?php echo $location; ?>">
 
+     
     </div>
     <div class="col-auto" class="form-group">
-    <?php
 
+    <?php
     if($update==true):
     ?>
-         <button type="submit" class="btn btn-primary mb-3" name="update">UPDATE</button>
+         
+         <button type="submit" class="btn btn-primaryupdate mb-3 glow-on-hover" name="update"  >UPDATE</button>
 
     <?php else: ?>
       <br>
-      <br>
-     <button type="submit" class="btn btn-primary mb-3"  name="save">INSERT</button>
+      
+     <button type="submit" class="btn btn-primary mb-3 glow-on-hover"  name="save"  >INSERT</button>
     <?php endif; ?>
+    
      </div>
   </form>
   </div>
 
 
 
-<a href="logout.php">LOG OUT</a>
+  <div class="wrapper">
+  <div class="link_wrapper">
+    <a class="logout" href="logout.php">log out</a>
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 268.832 268.832">
+        <path d="M265.17 125.577l-80-80c-4.88-4.88-12.796-4.88-17.677 0-4.882 4.882-4.882 12.796 0 17.678l58.66 58.66H12.5c-6.903 0-12.5 5.598-12.5 12.5 0 6.903 5.597 12.5 12.5 12.5h213.654l-58.66 58.662c-4.88 4.882-4.88 12.796 0 17.678 2.44 2.44 5.64 3.66 8.84 3.66s6.398-1.22 8.84-3.66l79.997-80c4.883-4.882 4.883-12.796 0-17.678z"/>
+      </svg>
+    </div>
+  </div>
+  
+</div>
+
+
+
 </body>
 </html>
